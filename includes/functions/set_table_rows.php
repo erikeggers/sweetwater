@@ -1,4 +1,5 @@
 <?php
+
 // Get data from database based on query
 function setTableRows($query)
 {
@@ -14,16 +15,18 @@ function setTableRows($query)
     "miscellaneous" => "SELECT * FROM sweetwater_test WHERE comments not in (SELECT comments FROM sweetwater_test WHERE comments like '%candy%' or comments like '%smarties%' or comments like '%taffy%' OR comments like '% call %' OR comments like '% call.%' OR comments like '% calls%' OR comments like '%comunicarse%' OR comments like '%llámame%' OR comments like '%referred%' or comments like '%referral%' OR comments like '%signature%' OR comments like '%sign%' OR comments like '%release%')"
   );
 
-
+  // Query to get data from database
   $queryToUse = $queryArray[$query];
 
+  // Run query
   $result = $conn->query($queryToUse);
 
-  // Check if query was successful
+  // Check if query failed and give error if it did.
   if (!$result) {
     die("Query failed: " . $conn->error);
   }
 
+  // Only run if number of rows is greater than 0.
   if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
