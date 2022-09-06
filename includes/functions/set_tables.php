@@ -1,7 +1,7 @@
 <?php
 
 // Get data from database based on query
-function setTableRows()
+function setTables()
 {
   // Include database connection
   include 'includes/dbh.inc.php';

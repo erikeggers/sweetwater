@@ -1,5 +1,5 @@
 <?php
-include 'includes/functions/set_table_rows.php';
+include 'includes/functions/set_tables.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ include 'includes/functions/set_table_rows.php';
   <h1>Customer Comments</h1>
   <!-- Set tables -->
   <?php
-  echo setTableRows();
+  echo setTables();
   ?>
 </body>
 
