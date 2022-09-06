@@ -44,41 +44,22 @@ function setTableRows()
     }
   }
 
-  // Candy Related
-  echo "<h2>Candy</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
-  foreach ($candy as $row) {
-    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
+  function printTable($array, $title)
+  {
+    echo "<h2>" . $title . "</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
+    foreach ($array as $row) {
+      echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
+    }
+    echo "</table>";
   }
-  echo "</table>";
 
-  // Call Related
-  echo "<h2>Call Related</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
-  foreach ($call as $row) {
-    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
-  }
-  echo "</table>";
-
-  // Signature Requirements
-  echo "<h2>Signature Requirements</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
-  foreach ($signature as $row) {
-    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
-  }
-  echo "</table>";
-
-  // Referrals
-  echo "<h2>Referrals</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
-  foreach ($referral as $row) {
-    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
-  }
-  echo "</table>";
-
-  // Miscellaneous
-  echo "<h2>Miscellaneous</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
-  foreach ($misc as $row) {
-    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
-  }
-  echo "</table>";
-
+  // Print tables
+  printTable($candy, "Candy");
+  printTable($call, "Call Related");
+  printTable($signature, "Signature Requirements");
+  printTable($referral, "Referrals");
+  printTable($misc, "Miscellaneous");
+  
   // Close connection
   $conn->close();
 }
