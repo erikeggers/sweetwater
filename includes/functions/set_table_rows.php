@@ -22,15 +22,63 @@ function setTableRows()
     die("Query failed: " . $conn->error);
   }
 
-  // Only run if number of rows is greater than 0.
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
+  // Arrays to hold each comment type
+  $candy = array();
+  $call = array();
+  $signature = array();
+  $referral = array();
+  $misc = array();
+
+  // For each comment in the candy array, create a table row
+  while ($row = $result->fetch_assoc()) {
+    if ($row['comment_type'] == 'Candy') {
+      array_push($candy, $row);
+    } elseif ($row['comment_type'] == 'Call Related') {
+      array_push($call, $row);
+    } elseif ($row['comment_type'] == 'Signature Requirements') {
+      array_push($signature, $row);
+    } elseif ($row['comment_type'] == 'Referrals') {
+      array_push($referral, $row);
+    } elseif ($row['comment_type'] == 'Miscellaneous') {
+      array_push($misc, $row);
     }
-  } else {
-    echo "No results found";
   }
-  
+
+  // Candy Related
+  echo "<h2>Candy</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
+  foreach ($candy as $row) {
+    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
+  }
+  echo "</table>";
+
+  // Call Related
+  echo "<h2>Call Related</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
+  foreach ($call as $row) {
+    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
+  }
+  echo "</table>";
+
+  // Signature Requirements
+  echo "<h2>Signature Requirements</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
+  foreach ($signature as $row) {
+    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
+  }
+  echo "</table>";
+
+  // Referrals
+  echo "<h2>Referrals</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
+  foreach ($referral as $row) {
+    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
+  }
+  echo "</table>";
+
+  // Miscellaneous
+  echo "<h2>Miscellaneous</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
+  foreach ($misc as $row) {
+    echo "<tr><td>" . $row['orderid'] . "</td><td>" . $row['comments'] . "</td><td>" . $row['comment_type'] . "</td><td>" . $row['shipdate_expected'] . "</td></tr>";
+  }
+  echo "</table>";
+
   // Close connection
   $conn->close();
 }
