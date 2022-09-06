@@ -29,7 +29,7 @@ function setTables()
   $referral = array();
   $misc = array();
 
-  // For each comment in the candy array, create a table row
+  // For each row, push to appropriate array
   while ($row = $result->fetch_assoc()) {
     if ($row['comment_type'] == 'Candy') {
       array_push($candy, $row);
