@@ -44,6 +44,7 @@ function setTableRows()
     }
   }
 
+  // Function to print table
   function printTable($array, $title)
   {
     echo "<h2>" . $title . "</h2><table border='1'><tr><th>Order ID</th><th>Comments</th><th>Type</th><th>Expected Ship Date</th></tr>";
@@ -59,7 +60,7 @@ function setTableRows()
   printTable($signature, "Signature Requirements");
   printTable($referral, "Referrals");
   printTable($misc, "Miscellaneous");
-  
+
   // Close connection
   $conn->close();
 }
